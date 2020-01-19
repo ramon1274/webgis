@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>My map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        #map {
+            height: 85%;
+        }
+            html{
+			height: 90%;
+			width:90%;
+			}
+			body{
+                height: 100%;
+                width: 100%;
+				        margin: 30px;
+				        padding:20px;
+                border-style: solid			
+                    
+            } 
+    </style>
+    </head>
+    <body>
+	<style>
+	h1{
+	text-align: Center;
+	color:#6e6969 ;
+	}
+	ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #e7e7e7;
+  background-color: #f3f3f3;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: #666;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #ddd;
+}
+
+li a.active {
+  color: white;
+  background-color: #4CAF50;
+}
+</style>
+</head>
+<body>
+
+<h1>Welcome to my travel blog!</h1>
+
+<ul>
+  <li><a href="#home">Home</a></li>
+  <li><a href="#news">Places Visited </a></li>
+  <li><a href="#contact">Bucket List</a></li>
+</ul>
+        <div id="map"></div>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGi5XQICLhvfZg91R7KbzHgTCG3FZdxvU&callback=initMap"
+        async defer>
+        </script>
+        <script> 
+       
+        function initMap() {
+        
+            var myLatLng = {lat: 43.762935, lng: -79.316685 };
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: myLatLng,
+                zoom: 15
+            });
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                animation: google.maps.Animation.DROP,
+                title: 'Find me here!'
+            });
+            
+            var infoWindow = new google.maps.InfoWindow({
+                content: '<h2> Scarborough, ON</h2>'
+            });
+
+            marker.addListener('click', function(){
+                infoWindow.open(map, marker);
+            });
+  
+            /* geocoder = new google.maps.geocoder();
+        function getCoordinates(address, callback) {
+            var coordinates;
+            geocoder.geocode({address:address}, function (result, status)
+                coordinates = results[0].geometry.location;
+                callback(coordinates);
+          })
+          address = {address: '200 Albert St S, Lindsay, ON'}
+*/
+          
+        }
+        </script>
+    </body>
+</html>

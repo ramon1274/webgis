@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>My map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+        #map {
+            height: 90%;
+        }
+            html{
+			height: 90%;
+			width:90%;
+			}
+			body{
+                height: 100%;
+                width: 100%;
+				margin: 30px;
+				padding:10px;
+                border-style: solid			
+                    
+            } 
+    </style>
+    </head>
+    <body>
+        </style>
+    </head>
+    <body>
+	<style>
+	h1{
+	text-align: Center;
+	color:#6e6969 ;
+	}
+        ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+    background-color: #f3f3f3;
+    }
+
+    li {
+    float: left;
+    }
+
+    li a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+    background-color: #ddd;
+    }
+
+    li a.active {
+    color: white;
+    background-color: #4CAF50;
+    }
+    </style>
+    </head>
+<body>
+        <h1>Places I have visited!</h1>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGi5XQICLhvfZg91R7KbzHgTCG3FZdxvU&callback=initMap"
+        async defer>
+        </script>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#news">Places Visited </a></li>
+          <li><a href="#contact">Bucket List</a></li>
+        </ul>
+                <div id="map"></div>
+               
+                <script type="text/javascript">
+
+                function initMap() {
+                    
+                    var myLatLng = {lat: 43.762935, lng: -79.316685 };
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        center: myLatLng,
+                        zoom: 4
+                    });
+                    var locations = [
+                      ['New Delhi', 28.6139, 77.2090, 4],
+                      ['Darjelling', 27.0410, -88.2663, 5],
+                      ['Cronulla Beach', 40.7128, -74.0060, 3],
+                      ['Manly Beach', 38.9072, -77.0369, 2],
+                      ['Maroubra Beach', 42.3601, -71.0589, 1]
+                    ];
+                
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                      zoom: 10,
+                      center: new google.maps.LatLng(-33.92, 151.25),
+                      mapTypeId: google.maps.MapTypeId.ROADMAP
+                    });
+                
+                    var infowindow = new google.maps.InfoWindow();
+                
+                    var marker, i;
+                
+                    for (i = 0; i < locations.length; i++) {  
+                      marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                        map: map
+                      });
+                
+                      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                        return function() {
+                          infowindow.setContent(locations[i][0]);
+                          infowindow.open(map, marker);
+                        }
+                      })(marker, i));
+                    }
+                }
+                  </script>
+                
+                  /*
+                    addMarker({coords:{lat:28.6139,lng:-77.2090}});
+                    addMarker({coords:{lat:27.0410,lng:-88.2663}});
+                    addMarker({coords:{lat:40.7128,lng:-74.0060}});
+                    addMarker({coords:{lat:38.9072,lng:-77.0369}});
+                    addMarker({coords:{lat:42.3601,lng:-71.0589}});
+                    addMarker({coords:{lat:27.6648,lng:-81.5158}});
+                    addMarker({coords:{lat:39.0997,lng:-94.5786}});
+                    addMarker({coords:{lat:32.7767,lng:-96.7970}});
+                    addMarker({coords:{lat:46.8139,lng:-71.2080}});
+                    addMarker({coords:{lat:44.6488,lng:-63.5752}});
+                    addMarker({coords:{lat:46.2382,lng:-63.1311}});
+
+                   // Add marker function
+
+
+                function addMarker(coords){
+                    var marker = new google.maps.Marker({
+                        position: coords,
+                        map: map});
+                }                    
+                
+*/
+        
+        </script>
+         
+    </body>
+</html>

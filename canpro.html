@@ -1,0 +1,109 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Canada</title>
+  <style>
+    html, body, #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+  
+  <link rel="stylesheet" href="https://js.arcgis.com/4.13/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.13/"></script>
+  
+  <script>  
+    var popupProvince,view, openSpacesRenderer;
+      require([
+        "esri/Map",
+        "esri/views/MapView",
+        "esri/layers/FeatureLayer",
+        "esri/PopupTemplate"
+       
+      ], 
+       function(Map, MapView, FeatureLayer, popupProvince) {
+         var map = new Map({
+          basemap: "topo-vector"
+        });
+  
+         view = new MapView({
+          container: "viewDiv",
+          map: map,
+          center: [-106.3468,56.1304],
+          zoom: 3.5
+
+        });
+                function createFillSymbol(value, color) {
+  
+        return {
+          value: value,
+          symbol: {
+            color: color,
+            type: "simple-fill",
+            style: "solid",
+            outline: {
+              style: "none"
+            }
+          },
+          label: value
+        };
+      }
+
+       openSpacesRenderer = {
+        type: "unique-value",
+        field: "FID",
+        uniqueValueInfos: [
+          createFillSymbol("1", "#BF553E"),
+          createFillSymbol("0", "#78D1E5"),
+          createFillSymbol("3", "#B374E3"),
+          createFillSymbol("4", "#6FD188"),
+          createFillSymbol("2", "#CFF258"),
+          createFillSymbol("5", "#CFF258"),
+          createFillSymbol("6", "#CFF258"),
+          createFillSymbol("7", "#F25E3D"),
+          createFillSymbol("8", "#8896F1"),
+          createFillSymbol("9", "#A75AE0"),
+          createFillSymbol("10", "#D13C89"),
+          createFillSymbol("11", "#437372"),
+          createFillSymbol("12", "#F453B5")
+          
+        ]
+		};
+         var map = new Map({
+          basemap: "topo-vector"
+        });
+  
+         view = new MapView({
+          container: "viewDiv",
+          map: map,
+          center: [-106.3468,56.1304],
+          zoom: 3.5
+        });
+  
+         popupProvince = {
+          "title": "Which Province of Canada is this?",
+          "content": "{PRNAME}"
+        }
+  
+        var province = new FeatureLayer({
+          url: "https://luna.flemingcollege.ca:6443/arcgis/rest/services/Geom99/smainalyCanadaPro/MapServer/0",
+          renderer: openSpacesRenderer,
+        opacity: 0.20,
+          outFields: ["PRNAME"],
+          popupTemplate: popupProvince
+        });
+  
+        map.add(province);
+        
+    
+      });
+    </script>
+    
+  
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+  </html>

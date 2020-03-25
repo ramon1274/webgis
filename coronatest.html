@@ -1,0 +1,98 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Corona virus Map</title>
+  <style>
+    html, body, #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+	
+	
+  </style>
+  
+
+
+ 
+  <link rel="stylesheet" href="https://js.arcgis.com/4.13/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.13/"></script>
+  
+  <script>  
+    var view;
+      require([
+        "esri/Map",
+        "esri/views/MapView",
+        "esri/layers/FeatureLayer",
+        
+       
+      ], 
+       function(Map, MapView, FeatureLayer) {
+         var map = new Map({
+          basemap: "topo-vector"
+        });
+  
+         view = new MapView({
+          container: "viewDiv",
+          map: map,
+          center: [-106.3468,56.1304],
+          zoom: 3.5
+
+        });
+       
+         var map = new Map({
+          basemap: "dark-gray"
+        });
+  
+         view = new MapView({
+          container: "viewDiv",
+          map: map,
+          center: [-106.3468,56.1304],
+          zoom: 3
+        });
+  
+       
+  
+       
+        
+    
+  
+	  
+	  var death = new FeatureLayer({
+          url: "https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases/FeatureServer/0",
+		  
+          
+        });
+		
+		map.add(death);
+		
+	
+		
+	var casesCountry = new FeatureLayer({
+          url: "https://services1.arcgis.com/0MSEUqKaxRlEPj5g/ArcGIS/rest/services/ncov_cases/FeatureServer/2",
+		  
+          
+        });
+		
+		map.add(casesCountry);
+		
+	
+		
+	var cases = new FeatureLayer({
+          url: "https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases/FeatureServer/1",
+		  
+          
+        });
+		map.add(cases);
+		
+	});	
+	  
+    </script>
+    
+  
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+  </html>
